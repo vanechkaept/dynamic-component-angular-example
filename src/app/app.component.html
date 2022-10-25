@@ -4,10 +4,8 @@
 <button (click)="addDynamicComponent()">add dynamic component</button>
 <button (click)="addHelloComponent()">add hello component</button>
 
-
-<hello [name]='name' [obj]='obj'></hello>
+<hello [name]="name" [obj]="obj"></hello>
 
 <button (click)="changeObj()">changeObj</button>
 
-
-<input [(ngModel)]='name'>
+<input [(ngModel)]="name" />

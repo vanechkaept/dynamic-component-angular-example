@@ -1,4 +1,5 @@
 import { Component, DoCheck, Input, TemplateRef, VERSION, ViewChild } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 import { AddDirective } from './add.directive';
 import { DynamicComponent } from './dynamic.component.ts/dynamic.component';
 import { HelloComponent } from './hello.component';
@@ -11,9 +12,9 @@ import { HelloComponent } from './hello.component';
 export class AppComponent implements DoCheck {
   @ViewChild(AddDirective, { static: true }) addHost: AddDirective;
 
-  public obj = {
+  public obj: BehaviorSubject<{count: number}> = new BehaviorSubject({
     count: 10,
-  }
+  })
 
   public name = 'Dmitry';
 
@@ -23,7 +24,8 @@ export class AppComponent implements DoCheck {
 
 
   public changeObj(): void{
-    this.obj.count = this.obj.count + 1;
+    const count = this.obj.value.count + 1;
+    this.obj.next({count});
   }
 
 
